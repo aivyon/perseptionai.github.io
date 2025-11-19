@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Body -->
+    <line x1="256" y1="190" x2="256" y2="320" />
+    <ellipse cx="256" cy="180" rx="10" ry="14" />
+    <line x1="256" y1="320" x2="246" y2="350" />
+    <line x1="256" y1="320" x2="266" y2="350" />
+
+    <!-- Antennas -->
+    <path d="M252 172 C225 140, 210 130, 195 125" />
+    <path d="M260 172 C287 140, 302 130, 317 125" />
+
+    <!-- Left upper wing outline -->
+    <path d="M256 200
+             C 215 155, 175 135, 120 140
+             C 75 145, 60 185, 75 225
+             C 95 270, 135 290, 185 295
+             C 210 285, 230 265, 245 240
+             Z" />
+
+    <!-- Left lower wing outline -->
+    <path d="M245 240
+             C 215 250, 185 270, 160 300
+             C 135 330, 130 360, 150 385
+             C 175 410, 210 405, 235 390
+             C 245 380, 252 365, 256 350" />
+
+    <!-- Right upper wing outline (mirror) -->
+    <path d="M256 200
+             C 297 155, 337 135, 392 140
+             C 437 145, 452 185, 437 225
+             C 417 270, 377 290, 327 295
+             C 302 285, 282 265, 267 240
+             Z" />
+
+    <!-- Right lower wing outline (mirror) -->
+    <path d="M267 240
+             C 297 250, 327 270, 352 300
+             C 377 330, 382 360, 362 385
+             C 337 410, 302 405, 277 390
+             C 267 380, 260 365, 256 350" />
+
+    <!-- Simple PCB traces left -->
+    <circle cx="195" cy="175" r="4" />
+    <circle cx="155" cy="205" r="4" />
+    <circle cx="170" cy="245" r="4" />
+    <circle cx="185" cy="285" r="4" />
+
+    <line x1="230" y1="210" x2="205" y2="190" />
+    <line x1="220" y1="235" x2="190" y2="215" />
+    <line x1="210" y1="260" x2="185" y2="245" />
+    <line x1="205" y1="285" x2="190" y2="275" />
+
+    <!-- Simple PCB traces right (mirror) -->
+    <circle cx="317" cy="175" r="4" />
+    <circle cx="357" cy="205" r="4" />
+    <circle cx="342" cy="245" r="4" />
+    <circle cx="327" cy="285" r="4" />
+
+    <line x1="282" y1="210" x2="307" y2="190" />
+    <line x1="292" y1="235" x2="322" y2="215" />
+    <line x1="302" y1="260" x2="327" y2="245" />
+    <line x1="307" y1="285" x2="322" y2="275" />
+  </g>
+</svg>
