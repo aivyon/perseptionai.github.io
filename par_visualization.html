@@ -2,45 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Multi-View Attribute Recognition – S-ACRM Visualization</title>
+  <title>PerceptionAI · Multi-View Attribute Recognition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #111827, #020617);
+      background: radial-gradient(circle at top left, #020617, #000);
       color: #e5e7eb;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .hero-left h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.9rem, 3vw, 2.3rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #bfdbfe;
+    }
+    .hero-left .tagline {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    .hero-left .meta {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+    }
+    .hero-left .meta span {
+      color: #a5b4fc;
+    }
+
+    .hero-right {
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+    }
+    .hero-right img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
     }
 
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #facc15;
+      margin: 6px 0 10px;
+    }
+    .blog-text {
+      font-size: 0.92rem;
+      color: #d1d5db;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    /* VISUALIZATION CARD (from previous answer, slightly wrapped) */
     .par-container {
-      max-width: 1100px;
       width: 100%;
-      padding: 24px 32px;
-      background: rgba(15, 23, 42, 0.92);
+      padding: 24px 28px;
+      background: rgba(15, 23, 42, 0.96);
       border-radius: 18px;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.3);
+      border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
-    h2 {
+    .par-container h2 {
       margin: 0 0 4px;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #bfdbfe;
     }
 
     .subtitle {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       color: #9ca3af;
       margin-bottom: 16px;
     }
 
     .stage-label {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #facc15;
@@ -121,6 +190,7 @@
     .timeline {
       margin-top: 10px;
       display: flex;
+      flex-wrap: wrap;
       gap: 6px;
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -132,6 +202,8 @@
       padding: 3px 8px;
       border-radius: 999px;
       border: 1px solid rgba(75, 85, 99, 0.6);
+      cursor: pointer;
+      user-select: none;
     }
 
     .timeline-step.active {
@@ -141,162 +213,182 @@
       font-weight: 600;
     }
 
-    @media (max-width: 768px) {
-      .par-container {
-        padding: 18px 16px;
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
       }
-      h2 {
-        font-size: 1.1rem;
+      .hero-right {
+        order: -1;
+      }
+      .par-container {
+        padding: 18px 18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="par-container">
-    <h2>Multi-View Attribute Recognition (CAM + S-ACRM)</h2>
-    <div class="subtitle">
-      Animated overview of the architecture from “Let’s Observe Them Over Time” (multi-perspective attribute recognition).
+  <div class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>PerceptionAI</h1>
+        <div class="tagline">
+          Experiments with multi-view neural architectures for general object tracking and attribute recognition.
+        </div>
+        <div class="meta">
+          personal research log · <span>CAM</span>, <span>S-ACRM</span>, <span>multi-view fusion</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- הפרפר שלך – חשוב שהקובץ הזה יהיה באותו ריפו -->
+        <img src="butterfly-pcb.png" alt="PCB butterfly artwork" />
+      </div>
+    </section>
+
+    <!-- SHORT BLOG NOTE -->
+    <div class="section-title">Dev Log · Multi-View Attribute Recognition</div>
+    <div class="blog-text">
+      Recently I’ve been exploring how to stabilize attribute predictions when an object is partially occluded or seen from
+      awkward viewpoints. Instead of trusting a single frame, I feed a <em>bag of views</em> of the same object into a shared
+      CNN backbone, extract Class Activation Maps (CAM) and confidence scores, and then let a Self-Attentive
+      Cross-Relation Module (S-ACRM) decide which views carry the strongest evidence. Below is an animated sketch of the
+      architecture I’m experimenting with, inspired by the WACV paper “Let’s Observe Them Over Time”, but adapted to
+      general objects (drones, vessels, vehicles…) rather than only pedestrians.
     </div>
-    <div class="stage-label" id="stageLabel">Stage 1 · Inputs</div>
 
-    <div class="diagram-wrapper">
-      <svg viewBox="0 0 1000 360">
-        <!-- defs -->
-        <defs>
-          <linearGradient id="heatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#22c55e" />
-            <stop offset="40%" stop-color="#eab308" />
-            <stop offset="100%" stop-color="#ef4444" />
-          </linearGradient>
+    <!-- VISUALIZATION -->
+    <div class="par-container">
+      <h2>Multi-View Attribute Recognition (CAM + S-ACRM)</h2>
+      <div class="subtitle">
+        Animated overview of the architecture – from inputs through backbone, CAM, S-ACRM, fusion and final prediction.
+      </div>
+      <div class="stage-label" id="stageLabel">Stage 1 · Inputs</div>
 
-          <linearGradient id="matrixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#0ea5e9" />
-            <stop offset="50%" stop-color="#6366f1" />
-            <stop offset="100%" stop-color="#a855f7" />
-          </linearGradient>
+      <div class="diagram-wrapper">
+        <svg viewBox="0 0 1000 360">
+          <defs>
+            <linearGradient id="heatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22c55e" />
+              <stop offset="40%" stop-color="#eab308" />
+              <stop offset="100%" stop-color="#ef4444" />
+            </linearGradient>
 
-          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="#38bdf8" />
-          </marker>
-        </defs>
+            <linearGradient id="matrixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0ea5e9" />
+              <stop offset="50%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#a855f7" />
+            </linearGradient>
 
-        <!-- INPUT IMAGES -->
-        <g id="inputsGroup">
-          <rect class="box" x="40" y="40" width="110" height="260"></rect>
-          <text class="box-label" x="95" y="60" text-anchor="middle">Multi-View Inputs</text>
-          <text class="box-sub" x="95" y="76" text-anchor="middle">(same object)</text>
+            <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <polygon points="0 0, 6 3, 0 6" fill="#38bdf8" />
+            </marker>
+          </defs>
 
-          <!-- small input thumbnails -->
-          <rect x="58" y="90" width="35" height="45" fill="#1f2937" stroke="#4b5563" rx="5" ry="5"></rect>
-          <rect x="98" y="90" width="35" height="45" fill="#111827" stroke="#4b5563" rx="5" ry="5"></rect>
+          <!-- INPUTS -->
+          <g id="inputsGroup">
+            <rect class="box" x="40" y="40" width="110" height="260"></rect>
+            <text class="box-label" x="95" y="60" text-anchor="middle">Multi-View Inputs</text>
+            <text class="box-sub" x="95" y="76" text-anchor="middle">(same object)</text>
 
-          <rect x="58" y="145" width="35" height="45" fill="#111827" stroke="#4b5563" rx="5" ry="5"></rect>
-          <rect x="98" y="145" width="35" height="45" fill="#1f2937" stroke="#4b5563" rx="5" ry="5"></rect>
+            <rect x="58" y="90" width="35" height="45" fill="#1f2937" stroke="#4b5563" rx="5" ry="5"></rect>
+            <rect x="98" y="90" width="35" height="45" fill="#111827" stroke="#4b5563" rx="5" ry="5"></rect>
 
-          <rect x="78" y="205" width="35" height="45" fill="#020617" stroke="#4b5563" rx="5" ry="5"></rect>
+            <rect x="58" y="145" width="35" height="45" fill="#111827" stroke="#4b5563" rx="5" ry="5"></rect>
+            <rect x="98" y="145" width="35" height="45" fill="#1f2937" stroke="#4b5563" rx="5" ry="5"></rect>
 
-          <text class="box-sub" x="95" y="272" text-anchor="middle">View 1…K</text>
-        </g>
+            <rect x="78" y="205" width="35" height="45" fill="#020617" stroke="#4b5563" rx="5" ry="5"></rect>
 
-        <!-- CNN BACKBONE -->
-        <g id="cnnGroup">
-          <rect class="box" x="210" y="70" width="150" height="200"></rect>
-          <text class="box-label" x="285" y="95" text-anchor="middle">CNN Backbone</text>
-          <text class="box-sub" x="285" y="113" text-anchor="middle">ResNet / Vision CNN</text>
-
-          <!-- vertical conv bars -->
-          <rect x="230" y="130" width="12" height="110" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
-          <rect x="248" y="135" width="12" height="100" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
-          <rect x="266" y="140" width="12" height="90" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
-          <rect x="284" y="145" width="12" height="80" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
-          <rect x="302" y="150" width="12" height="70" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
-          <rect x="320" y="155" width="12" height="60" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
-        </g>
-
-        <!-- ARROW: Inputs → CNN -->
-        <line class="arrow" x1="150" y1="170" x2="210" y2="170"></line>
-
-        <!-- CAM + CONFIDENCE -->
-        <g id="camConfGroup">
-          <!-- CAM block -->
-          <rect class="heatmap" x="400" y="70" width="140" height="90"></rect>
-          <text class="box-label" x="470" y="90" text-anchor="middle">CAM Energy</text>
-          <text class="box-sub" x="470" y="108" text-anchor="middle">where the model “looks”</text>
-
-          <!-- Confidence block -->
-          <rect class="box" x="400" y="180" width="140" height="90"></rect>
-          <text class="box-label" x="470" y="200" text-anchor="middle">Confidence Scores</text>
-          <text class="box-sub" x="470" y="218" text-anchor="middle">how sure for each attribute</text>
-        </g>
-
-        <!-- ARROWS CNN → CAM/CONF -->
-        <line class="arrow" x1="360" y1="140" x2="400" y2="115"></line>
-        <line class="arrow" x1="360" y1="210" x2="400" y2="230"></line>
-
-        <!-- S-ACRM MATRIX -->
-        <g id="sacrmGroup">
-          <rect class="matrix" x="590" y="100" width="170" height="140"></rect>
-          <text class="box-label" x="675" y="122" text-anchor="middle">S-ACRM</text>
-          <text class="box-sub" x="675" y="138" text-anchor="middle">Self-Attentive Cross-Relation</text>
-
-          <!-- tiny matrix cells -->
-          <g>
-            <!-- 4x4 mini grid -->
-            <rect x="615" y="155" width="20" height="20" fill="#0f172a" stroke="#22c55e" stroke-width="0.7"></rect>
-            <rect x="640" y="155" width="20" height="20" fill="#1d2438" stroke="#38bdf8" stroke-width="0.7"></rect>
-            <rect x="665" y="155" width="20" height="20" fill="#111827" stroke="#a855f7" stroke-width="0.7"></rect>
-            <rect x="690" y="155" width="20" height="20" fill="#020617" stroke="#f97316" stroke-width="0.7"></rect>
-
-            <rect x="615" y="180" width="20" height="20" fill="#1f2937" stroke="#a855f7" stroke-width="0.7"></rect>
-            <rect x="640" y="180" width="20" height="20" fill="#020617" stroke="#22c55e" stroke-width="0.7"></rect>
-            <rect x="665" y="180" width="20" height="20" fill="#111827" stroke="#38bdf8" stroke-width="0.7"></rect>
-            <rect x="690" y="180" width="20" height="20" fill="#020617" stroke="#eab308" stroke-width="0.7"></rect>
-
-            <rect x="615" y="205" width="20" height="20" fill="#020617" stroke="#38bdf8" stroke-width="0.7"></rect>
-            <rect x="640" y="205" width="20" height="20" fill="#111827" stroke="#f97316" stroke-width="0.7"></rect>
-            <rect x="665" y="205" width="20" height="20" fill="#1f2937" stroke="#22c55e" stroke-width="0.7"></rect>
-            <rect x="690" y="205" width="20" height="20" fill="#020617" stroke="#a855f7" stroke-width="0.7"></rect>
+            <text class="box-sub" x="95" y="272" text-anchor="middle">View 1…K</text>
           </g>
-        </g>
 
-        <!-- ARROWS CAM/CONF → S-ACRM -->
-        <line class="arrow" x1="540" y1="115" x2="590" y2="140"></line>
-        <line class="arrow" x1="540" y1="230" x2="590" y2="200"></line>
+          <!-- CNN -->
+          <g id="cnnGroup">
+            <rect class="box" x="210" y="70" width="150" height="200"></rect>
+            <text class="box-label" x="285" y="95" text-anchor="middle">CNN Backbone</text>
+            <text class="box-sub" x="285" y="113" text-anchor="middle">shared weights</text>
 
-        <!-- FUSION + OUTPUT -->
-        <g id="fusionGroup">
-          <rect class="box" x="800" y="120" width="150" height="80"></rect>
-          <text class="box-label" x="875" y="140" text-anchor="middle">Multi-View Fusion</text>
-          <text class="box-sub" x="875" y="158" text-anchor="middle">max / attention over views</text>
-        </g>
+            <rect x="230" y="130" width="12" height="110" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
+            <rect x="248" y="135" width="12" height="100" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
+            <rect x="266" y="140" width="12" height="90" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
+            <rect x="284" y="145" width="12" height="80" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
+            <rect x="302" y="150" width="12" height="70" fill="#111827" stroke="#22c55e" stroke-width="1"></rect>
+            <rect x="320" y="155" width="12" height="60" fill="#020617" stroke="#22c55e" stroke-width="1"></rect>
+          </g>
 
-        <g id="outputGroup">
-          <rect class="box" x="800" y="220" width="150" height="80"></rect>
-          <text class="box-label" x="875" y="242" text-anchor="middle">Final Output</text>
-          <text class="box-sub" x="875" y="260" text-anchor="middle">
-            General object attributes
-          </text>
-        </g>
+          <line class="arrow" x1="150" y1="170" x2="210" y2="170"></line>
 
-        <!-- ARROWS S-ACRM → Fusion → Output -->
-        <line class="arrow" x1="760" y1="170" x2="800" y2="160"></line>
-        <line class="arrow" x1="875" y1="200" x2="875" y2="220"></line>
+          <!-- CAM + CONF -->
+          <g id="camConfGroup">
+            <rect class="heatmap" x="400" y="70" width="140" height="90"></rect>
+            <text class="box-label" x="470" y="90" text-anchor="middle">CAM Energy</text>
+            <text class="box-sub" x="470" y="108" text-anchor="middle">where the model “looks”</text>
 
-      </svg>
-    </div>
+            <rect class="box" x="400" y="180" width="140" height="90"></rect>
+            <text class="box-label" x="470" y="200" text-anchor="middle">Confidence Scores</text>
+            <text class="box-sub" x="470" y="218" text-anchor="middle">per attribute / class</text>
+          </g>
 
-    <div class="caption" id="stageText">
-      <span class="caption-strong">Stage 1 – Inputs:</span> multiple non-consecutive views of the same object
-      are collected from different cameras or time steps.
-    </div>
+          <line class="arrow" x1="360" y1="140" x2="400" y2="115"></line>
+          <line class="arrow" x1="360" y1="210" x2="400" y2="230"></line>
 
-    <div class="timeline">
-      <div class="timeline-step active" data-step="0">Inputs</div>
-      <div class="timeline-step" data-step="1">Backbone</div>
-      <div class="timeline-step" data-step="2">CAM + Conf</div>
-      <div class="timeline-step" data-step="3">S-ACRM</div>
-      <div class="timeline-step" data-step="4">Fusion</div>
-      <div class="timeline-step" data-step="5">Output</div>
+          <!-- S-ACRM -->
+          <g id="sacrmGroup">
+            <rect class="matrix" x="590" y="100" width="170" height="140"></rect>
+            <text class="box-label" x="675" y="122" text-anchor="middle">S-ACRM</text>
+            <text class="box-sub" x="675" y="138" text-anchor="middle">Self-Attentive Cross-Relation</text>
+
+            <g>
+              <rect x="615" y="155" width="20" height="20" fill="#0f172a" stroke="#22c55e" stroke-width="0.7"></rect>
+              <rect x="640" y="155" width="20" height="20" fill="#1d2438" stroke="#38bdf8" stroke-width="0.7"></rect>
+              <rect x="665" y="155" width="20" height="20" fill="#111827" stroke="#a855f7" stroke-width="0.7"></rect>
+              <rect x="690" y="155" width="20" height="20" fill="#020617" stroke="#f97316" stroke-width="0.7"></rect>
+
+              <rect x="615" y="180" width="20" height="20" fill="#1f2937" stroke="#a855f7" stroke-width="0.7"></rect>
+              <rect x="640" y="180" width="20" height="20" fill="#020617" stroke="#22c55e" stroke-width="0.7"></rect>
+              <rect x="665" y="180" width="20" height="20" fill="#111827" stroke="#38bdf8" stroke-width="0.7"></rect>
+              <rect x="690" y="180" width="20" height="20" fill="#020617" stroke="#eab308" stroke-width="0.7"></rect>
+
+              <rect x="615" y="205" width="20" height="20" fill="#020617" stroke="#38bdf8" stroke-width="0.7"></rect>
+              <rect x="640" y="205" width="20" height="20" fill="#111827" stroke="#f97316" stroke-width="0.7"></rect>
+              <rect x="665" y="205" width="20" height="20" fill="#1f2937" stroke="#22c55e" stroke-width="0.7"></rect>
+              <rect x="690" y="205" width="20" height="20" fill="#020617" stroke="#a855f7" stroke-width="0.7"></rect>
+            </g>
+          </g>
+
+          <line class="arrow" x1="540" y1="115" x2="590" y2="140"></line>
+          <line class="arrow" x1="540" y1="230" x2="590" y2="200"></line>
+
+          <!-- FUSION -->
+          <g id="fusionGroup">
+            <rect class="box" x="800" y="120" width="150" height="80"></rect>
+            <text class="box-label" x="875" y="140" text-anchor="middle">Multi-View Fusion</text>
+            <text class="box-sub" x="875" y="158" text-anchor="middle">max / attention over views</text>
+          </g>
+
+          <g id="outputGroup">
+            <rect class="box" x="800" y="220" width="150" height="80"></rect>
+            <text class="box-label" x="875" y="242" text-anchor="middle">Final Output</text>
+            <text class="box-sub" x="875" y="260" text-anchor="middle">general object attributes</text>
+          </g>
+
+          <line class="arrow" x1="760" y1="170" x2="800" y2="160"></line>
+          <line class="arrow" x1="875" y1="200" x2="875" y2="220"></line>
+        </svg>
+      </div>
+
+      <div class="caption" id="stageText">
+        <span class="caption-strong">Stage 1 – Inputs:</span>
+        multiple non-consecutive views of the same object are collected from different cameras or time steps.
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-step active" data-step="0">Inputs</div>
+        <div class="timeline-step" data-step="1">Backbone</div>
+        <div class="timeline-step" data-step="2">CAM + Conf</div>
+        <div class="timeline-step" data-step="3">S-ACRM</div>
+        <div class="timeline-step" data-step="4">Fusion</div>
+        <div class="timeline-step" data-step="5">Output</div>
+      </div>
     </div>
   </div>
 
@@ -313,8 +405,8 @@
         label: "Stage 2 · CNN Backbone",
         activeIds: ["cnnGroup"],
         text:
-          "Stage 2 – CNN Backbone: each image is passed through a convolutional backbone " +
-          "(e.g., ResNet) to extract deep feature maps that capture structure and appearance."
+          "Stage 2 – CNN Backbone: each image is passed through a shared convolutional backbone " +
+          "to extract deep feature maps that capture structure and appearance."
       },
       {
         label: "Stage 3 · CAM + Confidence",
@@ -334,7 +426,7 @@
         label: "Stage 5 · Multi-View Fusion",
         activeIds: ["fusionGroup"],
         text:
-          "Stage 5 – Multi-View Fusion: information from all views is fused (e.g., max pooling or attention) " +
+          "Stage 5 – Multi-View Fusion: information from all views is fused (for example via max pooling or attention) " +
           "so strong evidence from any single view can dominate even if other views are occluded or noisy."
       },
       {
@@ -365,21 +457,19 @@
       const stage = stages[currentStage];
 
       stageLabel.textContent = stage.label;
-      stageText.innerHTML = `<span class="caption-strong">${stage.label.replace("·", "–")}:</span> ${stage.text}`;
+      stageText.innerHTML =
+        `<span class="caption-strong">${stage.label.replace("·", "–")}:</span> ` + stage.text;
 
-      // clear all
       allGroups.forEach(id => {
         const g = document.getElementById(id);
         if (g) g.classList.remove("active-glow");
       });
 
-      // activate current
       stage.activeIds.forEach(id => {
         const g = document.getElementById(id);
         if (g) g.classList.add("active-glow");
       });
 
-      // update timeline
       timelineSteps.forEach(step => {
         if (Number(step.dataset.step) === currentStage) {
           step.classList.add("active");
@@ -389,12 +479,10 @@
       });
     }
 
-    // auto-advance every 4.5 seconds
     setInterval(() => {
       updateStage(currentStage + 1);
     }, 4500);
 
-    // allow click on timeline
     timelineSteps.forEach(step => {
       step.addEventListener("click", () => {
         const idx = Number(step.dataset.step);
@@ -402,7 +490,6 @@
       });
     });
 
-    // initial
     updateStage(0);
   </script>
 </body>
