@@ -1,125 +1,109 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- לוגו פרפר לבן, רקע שקוף -->
-  <g fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Silver Linear Gradient for Body and Strokes -->
+    <linearGradient id="silverLinear" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#888888;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e0e0e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#888888;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Vertical Gradient for metallic sheen on lines -->
+    <linearGradient id="metalSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#b0b0b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#808080;stop-opacity:1" />
+    </linearGradient>
 
-    <!-- גוף -->
-    <line x1="256" y1="180" x2="256" y2="330" />
-    <line x1="256" y1="200" x2="256" y2="210" />
-    <line x1="256" y1="225" x2="256" y2="235" />
-    <line x1="256" y1="250" x2="256" y2="260" />
-    <line x1="256" y1="275" x2="256" y2="285" />
-    <line x1="256" y1="300" x2="256" y2="310" />
+    <!-- Radial Gradient for Nodes (Beads) -->
+    <radialGradient id="silverRadial" cx="40%" cy="40%" r="60%" fx="30%" fy="30%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#dcdcdc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#707070;stop-opacity:1" />
+    </radialGradient>
 
-    <!-- ראש קטן -->
-    <circle cx="256" cy="170" r="10" />
+    <!-- Reusable Node Circle -->
+    <circle id="node" r="7" fill="url(#silverRadial)" stroke="#888888" stroke-width="1.5"/>
+  </defs>
 
-    <!-- מחושים -->
-    <path d="M252 165 C230 140, 220 130, 208 125" />
-    <path d="M260 165 C282 140, 292 130, 304 125" />
+  <g transform="translate(256, 230)"> <!-- Center the butterfly structure -->
+    
+    <!-- STYLE FOR LINES -->
+    <style>
+      .circuit-line {
+        fill: none;
+        stroke: url(#metalSheen);
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .body-seg {
+        fill: url(#silverLinear);
+      }
+      .text-style {
+        font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+        font-weight: bold;
+        fill: #666666;
+        font-size: 42px;
+        letter-spacing: 2px;
+        text-anchor: middle;
+      }
+    </style>
 
-    <!-- כנף עליונה שמאלית – קווי נוירון רכים -->
-    <polyline points="256,190 232,182 210,175 188,172" />
-    <polyline points="256,205 230,205 206,200 186,195" />
-    <polyline points="256,220 230,228 206,235 188,242" />
+    <!-- RIGHT WING GROUP -->
+    <g id="rightWing">
+      <!-- Antenna Path -->
+      <path d="M 20,-60 Q 50,-110 85,-90" class="circuit-line" fill="none"/>
+      
+      <!-- Top Wing Path -->
+      <!-- BodyConnectTop -> Node1 -> Node2 -> Node3 -> Node4 -> Node5 -> BodyConnectLow -->
+      <polyline points="15,-30 50,-30 90,-70 150,-20 115,20 50,20 15,20" class="circuit-line"/>
+      
+      <!-- Bottom Wing Path -->
+      <!-- BodyConnectTop -> Node6 -> Node7 -> Node8 -> Node9 -> BodyConnectLow -->
+      <polyline points="15,60 50,60 100,90 130,130 100,160 50,130 15,130" class="circuit-line"/>
+      
+      <!-- NODES (Right Side) -->
+      <!-- Antenna Node -->
+      <use href="#node" x="85" y="-90"/>
+      
+      <!-- Top Wing Nodes -->
+      <use href="#node" x="50" y="-30"/>
+      <use href="#node" x="90" y="-70"/>
+      <use href="#node" x="150" y="-20"/>
+      <use href="#node" x="115" y="20"/>
+      <use href="#node" x="50" y="20"/>
 
-    <!-- הסתעפויות עליונות שמאל -->
-    <polyline points="210,175 196,160 182,152" />
-    <polyline points="206,200 192,190 176,186" />
-    <polyline points="206,235 192,240 180,248" />
+      <!-- Bottom Wing Nodes -->
+      <use href="#node" x="50" y="60"/>
+      <use href="#node" x="100" y="90"/>
+      <use href="#node" x="130" y="130"/>
+      <use href="#node" x="100" y="160"/>
+      <use href="#node" x="50" y="130"/>
+    </g>
 
-    <!-- כנף תחתונה שמאלית – קצרה, אלגנטית -->
-    <polyline points="256,245 232,255 212,270 198,288" />
-    <polyline points="256,260 232,270 214,285 204,302" />
-    <polyline points="256,275 234,285 220,300 212,316" />
+    <!-- LEFT WING (Mirrored) -->
+    <use href="#rightWing" transform="scale(-1, 1)"/>
 
-    <!-- הסתעפויות תחתונות שמאל -->
-    <polyline points="212,270 198,266 186,270" />
-    <polyline points="214,285 200,283 188,290" />
-    <polyline points="220,300 206,304 194,314" />
+    <!-- CENTRAL BODY (Segmented) -->
+    <g transform="translate(0, 35)"> <!-- Adjust vertical centering -->
+      <!-- Rounded Top Segment -->
+      <path d="M -10,-95 L 10,-95 A 10 10 0 0 1 10 -85 L 10 -78 L -10 -78 L -10 -85 A 10 10 0 0 1 -10 -95 Z" class="body-seg"/>
+      
+      <!-- Middle Segments -->
+      <rect x="-10" y="-74" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="-52" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="-30" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="-8" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="14" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="36" width="20" height="18" class="body-seg"/>
+      <rect x="-10" y="58" width="20" height="18" class="body-seg"/>
+      
+      <!-- Rounded Bottom Segment -->
+      <path d="M -10,80 L 10,80 L 10,87 A 10 10 0 0 1 -10 87 Z" class="body-seg"/>
+    </g>
 
-    <!-- צד ימין – מראה סימטרית -->
-    <!-- כנף עליונה ימנית -->
-    <polyline points="256,190 280,182 302,175 324,172" />
-    <polyline points="256,205 282,205 306,200 326,195" />
-    <polyline points="256,220 282,228 306,235 324,242" />
-
-    <!-- הסתעפויות עליונות ימין -->
-    <polyline points="302,175 316,160 330,152" />
-    <polyline points="306,200 320,190 336,186" />
-    <polyline points="306,235 320,240 332,248" />
-
-    <!-- כנף תחתונה ימנית -->
-    <polyline points="256,245 280,255 300,270 314,288" />
-    <polyline points="256,260 280,270 298,285 308,302" />
-    <polyline points="256,275 278,285 292,300 300,316" />
-
-    <!-- הסתעפויות תחתונות ימין -->
-    <polyline points="300,270 314,266 326,270" />
-    <polyline points="298,285 312,283 324,290" />
-    <polyline points="292,300 306,304 318,314" />
   </g>
 
-  <!-- נקודות נוירונים / PCB – קטנות בפנים, גדולות בקצה -->
-  <g fill="#FFFFFF" stroke="none">
-    <!-- צד שמאל פנימי -->
-    <circle cx="232" cy="182" r="4"/>
-    <circle cx="210" cy="175" r="4"/>
-    <circle cx="196" cy="160" r="4"/>
-    <circle cx="230" cy="205" r="4"/>
-    <circle cx="206" cy="200" r="4"/>
-    <circle cx="192" cy="190" r="4"/>
-    <circle cx="230" cy="228" r="4"/>
-    <circle cx="206" cy="235" r="4"/>
-    <circle cx="192" cy="240" r="4"/>
+  <!-- TEXT -->
+  <text x="256" y="460" class="text-style">PERSEPTIONAI</text>
 
-    <circle cx="232" cy="255" r="4"/>
-    <circle cx="212" cy="270" r="4"/>
-    <circle cx="198" cy="288" r="4"/>
-    <circle cx="232" cy="270" r="4"/>
-    <circle cx="214" cy="285" r="4"/>
-    <circle cx="204" cy="302" r="4"/>
-    <circle cx="234" cy="285" r="4"/>
-    <circle cx="220" cy="300" r="4"/>
-    <circle cx="212" cy="316" r="4"/>
-
-    <!-- קצוות שמאל – קצת גדולים יותר -->
-    <circle cx="188" cy="172" r="5"/>
-    <circle cx="182" cy="152" r="5"/>
-    <circle cx="186" cy="195" r="5"/>
-    <circle cx="180" cy="248" r="5"/>
-    <circle cx="186" cy="270" r="5"/>
-    <circle cx="188" cy="290" r="5"/>
-    <circle cx="194" cy="314" r="5"/>
-
-    <!-- צד ימין פנימי (מראה) -->
-    <circle cx="280" cy="182" r="4"/>
-    <circle cx="302" cy="175" r="4"/>
-    <circle cx="316" cy="160" r="4"/>
-    <circle cx="282" cy="205" r="4"/>
-    <circle cx="306" cy="200" r="4"/>
-    <circle cx="320" cy="190" r="4"/>
-    <circle cx="282" cy="228" r="4"/>
-    <circle cx="306" cy="235" r="4"/>
-    <circle cx="320" cy="240" r="4"/>
-
-    <circle cx="280" cy="255" r="4"/>
-    <circle cx="300" cy="270" r="4"/>
-    <circle cx="314" cy="288" r="4"/>
-    <circle cx="280" cy="270" r="4"/>
-    <circle cx="298" cy="285" r="4"/>
-    <circle cx="308" cy="302" r="4"/>
-    <circle cx="278" cy="285" r="4"/>
-    <circle cx="292" cy="300" r="4"/>
-    <circle cx="300" cy="316" r="4"/>
-
-    <!-- קצוות ימין – גדולים יותר -->
-    <circle cx="324" cy="172" r="5"/>
-    <circle cx="330" cy="152" r="5"/>
-    <circle cx="326" cy="195" r="5"/>
-    <circle cx="332" cy="248" r="5"/>
-    <circle cx="326" cy="270" r="5"/>
-    <circle cx="324" cy="290" r="5"/>
-    <circle cx="318" cy="314" r="5"/>
-  </g>
 </svg>
