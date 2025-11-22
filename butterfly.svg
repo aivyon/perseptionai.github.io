@@ -1,91 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Body Gradient: Cylinder Silver Effect -->
-    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#8a8a8a;stop-opacity:1" />
-      <stop offset="25%" style="stop-color:#cfcfcf;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#f0f0f0;stop-opacity:1" />
-      <stop offset="75%" style="stop-color:#cfcfcf;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8a8a8a;stop-opacity:1" />
-    </linearGradient>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- רקע כהה (אפשר למחוק אם לא צריך) -->
+  <rect x="0" y="0" width="600" height="600" fill="#05070D"/>
 
-    <!-- Stroke Gradient: Metallic Sheen -->
-    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#b0b0b0;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7a7a7a;stop-opacity:1" />
-    </linearGradient>
+  <!-- קבוצה כדי שיהיה קל לטפל בצבעים -->
+  <g fill="none" stroke="#C7C8CB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- Node Gradient: Pearl/Silver Sphere -->
-    <radialGradient id="nodeGrad" cx="35%" cy="35%" r="65%" fx="30%" fy="30%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:#d6d6d6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#757575;stop-opacity:1" />
-    </radialGradient>
+    <!-- שתי “אנטנות” עליונות – רמז עדין לפרפר / נוירונים -->
+    <path d="M300 210 C 305 185 322 165 335 150" />
+    <path d="M300 210 C 295 185 278 165 265 150" />
 
-    <!-- Reusable Node Circle -->
-    <circle id="node" r="8" fill="url(#nodeGrad)" stroke="#888888" stroke-width="1.5"/>
-  </defs>
+    <!-- כנף עליונה שמאלית – קו חיצוני -->
+    <path d="M300 260
+             C 275 235 245 225 220 220
+             C 205 217 190 217 175 220
+             C 160 225 150 235 145 250" />
 
-  <g transform="translate(256, 0)"> <!-- Center Axis at X=0 for symmetry -->
-    
-    <!-- RIGHT WING GROUP -->
-    <g id="rightSide">
-      <!-- Lines -->
-      <g fill="none" stroke="url(#lineGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Antenna -->
-        <path d="M 12,112 Q 50,50 84,80" />
-        
-        <!-- Top Wing Circuit -->
-        <!-- From Body(Seg 2) to N1, N2, N3, N4, Back to Body(Seg 5) -->
-        <polyline points="16,142 74,110 154,80 184,150 74,232 16,232" />
+    <!-- כנף עליונה ימנית – קו חיצוני (מראה) -->
+    <path d="M300 260
+             C 325 235 355 225 380 220
+             C 395 217 410 217 425 220
+             C 440 225 450 235 455 250" />
 
-        <!-- Bottom Wing Circuit -->
-        <!-- From Body(Seg 6) to N5, N6, N7, N8, Back to Body(Seg 8) -->
-        <polyline points="16,262 54,262 144,310 94,380 34,350 16,322" />
-      </g>
+    <!-- קווים פנימיים עליונים (נוירונים) -->
+    <path d="M300 250 C 280 235 260 230 240 232" />
+    <path d="M300 250 C 320 235 340 230 360 232" />
 
-      <!-- Nodes -->
-      <g>
-        <!-- Antenna Node -->
-        <use href="#node" x="84" y="80" />
-        
-        <!-- Top Wing Nodes -->
-        <use href="#node" x="74" y="110" />
-        <use href="#node" x="154" y="80" />
-        <use href="#node" x="184" y="150" />
-        <use href="#node" x="74" y="232" />
+    <!-- נקודות נוירון עליונות -->
+    <circle cx="240" cy="232" r="4" fill="#C7C8CB"/>
+    <circle cx="360" cy="232" r="4" fill="#C7C8CB"/>
 
-        <!-- Bottom Wing Nodes -->
-        <use href="#node" x="54" y="262" />
-        <use href="#node" x="144" y="310" />
-        <use href="#node" x="94" y="380" />
-        <use href="#node" x="34" y="350" />
-      </g>
-    </g>
+    <circle cx="220" cy="220" r="4" fill="#C7C8CB"/>
+    <circle cx="380" cy="220" r="4" fill="#C7C8CB"/>
 
-    <!-- LEFT WING GROUP (Mirrored) -->
-    <g transform="scale(-1, 1)">
-      <use href="#rightSide" />
-    </g>
+    <circle cx="175" cy="220" r="4" fill="#C7C8CB"/>
+    <circle cx="425" cy="220" r="4" fill="#C7C8CB"/>
 
-    <!-- CENTRAL BODY -->
-    <!-- Width 32px (x -16 to 16) -->
-    <g fill="url(#bodyGrad)">
-      <!-- Top Cap -->
-      <path d="M -16,124 L 16,124 A 16 14 0 0 0 -16 124 Z" transform="translate(0, -24)" />
-      
-      <!-- 7 Rectangular Segments -->
-      <!-- Seg 1 --> <rect x="-16" y="130" width="32" height="24" rx="1" />
-      <!-- Seg 2 --> <rect x="-16" y="160" width="32" height="24" rx="1" />
-      <!-- Seg 3 --> <rect x="-16" y="190" width="32" height="24" rx="1" />
-      <!-- Seg 4 --> <rect x="-16" y="220" width="32" height="24" rx="1" />
-      <!-- Seg 5 --> <rect x="-16" y="250" width="32" height="24" rx="1" />
-      <!-- Seg 6 --> <rect x="-16" y="280" width="32" height="24" rx="1" />
-      <!-- Seg 7 --> <rect x="-16" y="310" width="32" height="24" rx="1" />
+    <!-- כנפיים תחתונות – קו חיצוני שמתחיל כמעט אופקי ואז יורד בפולש קל, לא נסגר -->
+    <!-- שמאל -->
+    <path d="
+        M 260 300
+        C 235 295 220 295 205 298
+        C 190 302 175 310 162 325
+        C 150 340 143 360 140 382
+        C 138 400 140 418 145 432
+        C 155 455 175 470 200 478
+        " />
 
-      <!-- Bottom Cap -->
-      <path d="M -16,340 L 16,340 A 16 24 0 0 0 -16 340 Z" />
-    </g>
+    <!-- ימין (מראה) -->
+    <path d="
+        M 340 300
+        C 365 295 380 295 395 298
+        C 410 302 425 310 438 325
+        C 450 340 457 360 460 382
+        C 462 400 460 418 455 432
+        C 445 455 425 470 400 478
+        " />
+
+    <!-- קווים פנימיים תחתונים (נוירונים עדינים) -->
+    <!-- שמאל -->
+    <path d="M300 290 C 280 295 265 305 252 320" />
+    <circle cx="252" cy="320" r="4" fill="#C7C8CB"/>
+
+    <!-- ימין -->
+    <path d="M300 290 C 320 295 335 305 348 320" />
+    <circle cx="348" cy="320" r="4" fill="#C7C8CB"/>
+
+    <!-- גוף מרכזי – אפשר להחליש / למחוק אם לא רוצים שיבלוט -->
+    <path d="M300 260 C 302 290 302 305 300 330 C 298 305 298 290 300 260" />
 
   </g>
+
+  <!-- טקסט – PERSEPTIONAI עם S -->
+  <text
+      x="300"
+      y="520"
+      text-anchor="middle"
+      font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="40"
+      letter-spacing="6"
+      fill="#C7C8CB">
+    PERSEPTIONAI
+  </text>
 </svg>
